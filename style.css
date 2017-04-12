@@ -11,6 +11,7 @@ html, body {
   height: 100%;
 }
 
+
 #left-side {
             float: left;
             vertical-align:top;
@@ -33,4 +34,8 @@ html, body {
           width : 70%;
           height : 80%;
           margin : 0 auto;
+}
+
+#sales-h1 {
+          align-content: center;
 }
