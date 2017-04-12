@@ -10,3 +10,32 @@
 html, body {
   height: 100%;
 }
+
+
+#left-side {
+            float: left;
+            vertical-align:top;
+            width:49%;
+}
+
+#right-side {
+              float:right;
+              vertical-align: top;
+              width:49%;
+
+}
+/*
+.clear-fix	{
+			       clear: both;
+			      }
+*/
+
+#wrapper {
+          width : 70%;
+          height : 80%;
+          margin : 0 auto;
+}
+
+#sales-h1 {
+          align-content: center;
+}
