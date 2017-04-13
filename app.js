@@ -1,222 +1,105 @@
 'use strict';
 
-var pike = {
-            minCustomers : 23,
-            maxCustomers : 65,
-            avgCookies : 6.3,
-            totalCookies : 0,
-            simulatedCookiesArray : [],
-            businessHours : ['6am : ', '7am : ', '8am : ', '9am : ', '10am : ', '11am : ', '12pm : ', '1pm : ', '2pm : ', '3pm : ', '4pm : ', '5pm : ', '6pm : ', '7pm : ', '8pm : ', 'Total : '],
 
-            randomCustomers : function() {
-                                var diffCustomers = this.maxCustomers-this.minCustomers;
-                                return Math.floor((Math.random()*(diffCustomers+1))+this.minCustomers);
-                              },
-
-            simulatedCookiesPerHour : function() {
-                                        for(var i=0; i<this.businessHours.length; i++) {
-                                          this.simulatedCookiesArray.push(this.avgCookies*this.randomCustomers());
-                                        }
-                                      },
-            totalCookiesFunc : function() {
-
-                              for (var j=0; j<this.simulatedCookiesArray.length; j++) {
-                                  this.totalCookies = this.totalCookies + this.simulatedCookiesArray[j];
-                              }
-                           }
+function SalesPerLocation(minCustomers, maxCustomers, avgCookies, location) {
+  this.minCustomers = minCustomers;
+  this.maxCustomers = maxCustomers;
+  this.avgCookies = avgCookies;
+  this.location = location;
+  this.totalCookies = 0;
+  this.simulatedCookiesArray = [];
+  this.businessHours = ['6am : ', '7am : ', '8am : ', '9am : ', '10am : ', '11am : ', '12pm : ', '1pm : ', '2pm : ', '3pm : ', '4pm : ', '5pm : ', '6pm : ', '7pm : ', '8pm : '];
 }
 
-pike.simulatedCookiesPerHour();
-pike.totalCookiesFunc();
-// add business hours into the list
 
-var pikeBusinessHoursUl = document.getElementById('pike-business-hours');
-var pikeBusinessHoursLi;
-    for (var i=0; i<pike.businessHours.length; i++) {
-      pikeBusinessHoursLi = document.createElement('li');
-      pikeBusinessHoursLi.textContent = pike.businessHours[i] + Math.floor(pike.simulatedCookiesArray[i]);
-      pikeBusinessHoursUl.appendChild(pikeBusinessHoursLi);
-    }
+SalesPerLocation.prototype.randomCustomers =  function() {
+                                                var diffCustomers = this.maxCustomers-this.minCustomers;
+                                                return Math.floor((Math.random()*(diffCustomers+1))+this.minCustomers);
+                                              };
 
 
+SalesPerLocation.prototype.simulatedCookiesPerHour =  function() {
+                                                        for(var i=0; i<this.businessHours.length; i++) {
+                                                          this.simulatedCookiesArray.push(this.avgCookies*this.randomCustomers());
+                                                        }
+                                                      };
 
 
-
-
-var seaTac = {
-              minCustomers : 3,
-              maxCustomers : 24,
-              avgCookies : 1.2,
-              totalCookies : 0,
-              simulatedCookiesArray : [],
-              businessHours : ['6am : ', '7am : ', '8am : ', '9am : ', '10am : ', '11am : ', '12pm : ', '1pm : ', '2pm : ', '3pm : ', '4pm : ', '5pm : ', '6pm : ', '7pm : ', '8pm : ', 'Total : '],
-
-              randomCustomers : function() {
-                                  var diffCustomers = this.maxCustomers-this.minCustomers;
-                                  return Math.floor((Math.random()*(diffCustomers+1))+this.minCustomers);
-                                },
-
-              simulatedCookiesPerHour : function() {
-                                          for(var i=0; i<this.businessHours.length; i++) {
-                                            this.simulatedCookiesArray.push(this.avgCookies*this.randomCustomers());
-                                          }
-                                        },
-              totalCookiesFunc : function() {
-
-                                for (var j=0; j<this.simulatedCookiesArray.length; j++) {
-                                    this.totalCookies = this.totalCookies + this.simulatedCookiesArray[j];
-                                }
-                             }
-  }
-
-  seaTac.simulatedCookiesPerHour();
-  seaTac.totalCookiesFunc();
-
-  // add business hours into the list
-
-  var seaTacBusinessHoursUl = document.getElementById('seatac-business-hours');
-  var seaTacBusinessHoursLi;
-      for (var i=0; i<seaTac.businessHours.length; i++) {
-        seaTacBusinessHoursLi = document.createElement('li');
-        seaTacBusinessHoursLi.textContent = seaTac.businessHours[i] + Math.floor(seaTac.simulatedCookiesArray[i]);
-
-        seaTacBusinessHoursUl.appendChild(seaTacBusinessHoursLi);
-      }
-
-
-
-
-
-
-
-var seattleCenter = {
-                      minCustomers : 11,
-                      maxCustomers : 38,
-                      avgCookies : 3.7,
-                      totalCookies : 0,
-                      simulatedCookiesArray : [],
-                      businessHours : ['6am : ', '7am : ', '8am : ', '9am : ', '10am : ', '11am : ', '12pm : ', '1pm : ', '2pm : ', '3pm : ', '4pm : ', '5pm : ', '6pm : ', '7pm : ', '8pm : ', 'Total : '],
-
-                      randomCustomers : function() {
-                                          var diffCustomers = this.maxCustomers-this.minCustomers;
-                                          return Math.floor((Math.random()*(diffCustomers+1))+this.minCustomers);
-                                        },
-
-                      simulatedCookiesPerHour : function() {
-                                                  for(var i=0; i<this.businessHours.length; i++) {
-                                                    this.simulatedCookiesArray.push(this.avgCookies*this.randomCustomers());
+SalesPerLocation.prototype.totalCookiesFunc =  function() {
+                                                  for (var j=0; j<this.simulatedCookiesArray.length; j++) {
+                                                    this.totalCookies = this.totalCookies + this.simulatedCookiesArray[j];
                                                   }
-                                                },
-                      totalCookiesFunc : function() {
+                                               };
 
-                                        for (var j=0; j<this.simulatedCookiesArray.length; j++) {
-                                            this.totalCookies = this.totalCookies + this.simulatedCookiesArray[j];
+
+SalesPerLocation.prototype.saleTable =  function() {
+                                          var table =  document.createElement('table');
+
+                                          var tRow1, tData1, tDataEmpty, tDataDailyTotalString ;
+
+                                            tRow1 = document.createElement('tr');
+                                            tDataEmpty = document.createElement ('td');
+                                            tRow1.appendChild(tDataEmpty);
+
+                                            for (var i=0; i<this.businessHours.length; i++) {
+                                                tData1 = document.createElement('td');
+                                                tData1.textContent = this.businessHours[i];
+                                                tRow1.appendChild(tData1);
+                                              }
+
+                                            tDataDailyTotalString = document.createElement('td');
+                                            tRow1.appendChild(tDataDailyTotalString);
+                                            tDataDailyTotalString.textContent = "Daily Location Total";
+                                            table.appendChild(tRow1);
+
+
+                                          for (var i=0; i<6; i++) {
+
+                                            var tRows, tDatum, tLocations;
+
+                                              tRows = document.createElement('tr');
+                                              tLocations = document.createElement ('td');
+                                              tLocations.textContent = this.Location;
+                                              tRows.appendChild(tLocations);
+
+                                              for (var i=0; i<this.simulatedCookiesArray.length; i++) {
+                                                  tDatum = document.createElement('td');
+                                                  tRows.appendChild(tDatum);
+                                                  tDatum.textContent = this.simulatedCookiesArray[i];
+
+                                              }
+
+                                              tDataDailyTotal = document.createElement('td');
+                                              tRows.appendChild(tDataDailyTotal);
+                                              tDataDailyTotal.textContent = this.totalCookiesFunc();
+
+                                              table.appendChild(tRow2);
+                                          }
+
+                                          return table;
                                         }
-                                     }
-          }
 
-seattleCenter.simulatedCookiesPerHour();
-seattleCenter.totalCookiesFunc();
+var pike = new SalesPerLocation (23, 65, 6.3, "1st & Pike");
+var pikeTable = pike.saleTable();
+var pikePosition = document.getElementById('dailysales-table');
+pikePosition.appendChild(pikeTable);
 
-          // add business hours into the list
+var SeaTac = new SalesPerLocation (3, 24, 1.2, "SeaTac Airport");
+var seaTacTable = seaTac.saleTable();
+var seaTacPosition = document.getElementById('dailysales-table');
+seaTacPosition.appendChild(seaTacTable);
 
-var seattleCenterBusinessHoursUl = document.getElementById('seacen-business-hours');
-var seattleCenterBusinessHoursLi;
-for (var i=0; i<seattleCenter.businessHours.length; i++) {
-    seattleCenterBusinessHoursLi = document.createElement('li');
-    seattleCenterBusinessHoursLi.textContent = seattleCenter.businessHours[i] + Math.floor(seattleCenter.simulatedCookiesArray[i]);
-    seattleCenterBusinessHoursUl.appendChild(seattleCenterBusinessHoursLi);
-}
+var seattleCenter= new SalesPerLocation (11, 38, 3.7, "Seattle Center");
+var seattleCenterTable = seattleCenter.saleTable();
+var seattleCenterPosition = document.getElementById('dailysales-table');
+seattleCenterPosition.appendChild(pikeTable);
 
+var capitolHill = new SalesPerLocation (20, 38, 2.3, "Capitol Hill");
+var capitolHillTable = capitolHill.saleTable();
+var capitolHillPosition = document.getElementById('dailysales-table');
+capitolHillPosition.appendChild(capitolHillTable);
 
-
-
-
-
-
-var capitolHill = {
-                    minCustomers : 20,
-                    maxCustomers : 38,
-                    avgCookies : 2.3,
-                    totalCookies : 0,
-                    simulatedCookiesArray : [],
-                    businessHours : ['6am : ', '7am : ', '8am : ', '9am : ', '10am : ', '11am : ', '12pm : ', '1pm : ', '2pm : ', '3pm : ', '4pm : ', '5pm : ', '6pm : ', '7pm : ', '8pm : ', 'Total : '],
-
-                    randomCustomers : function() {
-                                        var diffCustomers = this.maxCustomers-this.minCustomers;
-                                        return Math.floor((Math.random()*(diffCustomers+1))+this.minCustomers);
-                                      },
-
-                    simulatedCookiesPerHour : function() {
-                                                for(var i=0; i<this.businessHours.length; i++) {
-                                                  this.simulatedCookiesArray.push(this.avgCookies*this.randomCustomers());
-                                                }
-                                              },
-                    totalCookiesFunc : function() {
-
-                                      for (var j=0; j<this.simulatedCookiesArray.length; j++) {
-                                          this.totalCookies = this.totalCookies + this.simulatedCookiesArray[j];
-                                      }
-                                   }
-        }
-
-capitolHill.simulatedCookiesPerHour();
-capitolHill.totalCookiesFunc();
-
-        // add business hours into the list
-
-var capitolHillBusinessHoursUl = document.getElementById('caphill-business-hours');
-var capitolHillBusinessHoursLi;
-for (var i=0; i<capitolHill.businessHours.length; i++) {
-  capitolHillBusinessHoursLi = document.createElement('li');
-  capitolHillBusinessHoursLi.textContent = capitolHill.businessHours[i] + Math.floor(capitolHill.simulatedCookiesArray[i]);
-  capitolHillBusinessHoursUl.appendChild(capitolHillBusinessHoursLi);
-}
-
-
-
-
-
-
-
-
-
-
-var alki = {
-            minCustomers : 2,
-            maxCustomers : 16,
-            avgCookies : 4.6,
-            totalCookies : 0,
-            simulatedCookiesArray : [],
-            businessHours : ['6am : ', '7am : ', '8am : ', '9am : ', '10am : ', '11am : ', '12pm : ', '1pm : ', '2pm : ', '3pm : ', '4pm : ', '5pm : ', '6pm : ', '7pm : ', '8pm : ', 'Total : '],
-
-            randomCustomers : function() {
-                                var diffCustomers = this.maxCustomers-this.minCustomers;
-                                return Math.floor((Math.random()*(diffCustomers+1))+this.minCustomers);
-                              },
-
-            simulatedCookiesPerHour : function() {
-                                        for(var i=0; i<this.businessHours.length; i++) {
-                                          this.simulatedCookiesArray.push(this.avgCookies*this.randomCustomers());
-                                        }
-                                      },
-            totalCookiesFunc : function() {
-
-                              for (var j=0; j<this.simulatedCookiesArray.length; j++) {
-                                  this.totalCookies = this.totalCookies + this.simulatedCookiesArray[j];
-                              }
-                           }
-}
-
-alki.simulatedCookiesPerHour();
-alki.totalCookiesFunc();
-
-// add business hours into the list
-
-var alkiBusinessHoursUl = document.getElementById('alki-business-hours');
-var alkiBusinessHoursLi;
-for (var i=0; i<alki.businessHours.length; i++) {
-  alkiBusinessHoursLi = document.createElement('li');
-  alkiBusinessHoursLi.textContent = alki.businessHours[i] + Math.floor(alki.simulatedCookiesArray[i]);
-  alkiBusinessHoursUl.appendChild(alkiBusinessHoursLi);
-  }
+var alki = new SalesPerLocation (2, 16, 4.6, "Alki");
+var alkiTable = alki.saleTable();
+var alkiPosition = document.getElementById('dailysales-table');
+alkiPosition.appendChild(alkiTable);
