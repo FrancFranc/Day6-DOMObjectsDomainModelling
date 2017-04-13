@@ -20,21 +20,22 @@ SalesPerLocation.prototype.randomCustomers =  function() {
 
 SalesPerLocation.prototype.simulatedCookiesPerHour =  function() {
                                                         for(var i=0; i<this.businessHours.length; i++) {
-                                                          this.simulatedCookiesArray.push(this.avgCookies*this.randomCustomers());
+                                                          this.simulatedCookiesArray.push(Math.floor(this.avgCookies*this.randomCustomers()));
                                                         }
                                                       };
 
 
 SalesPerLocation.prototype.totalCookiesFunc =  function() {
                                                   for (var j=0; j<this.simulatedCookiesArray.length; j++) {
-                                                    this.totalCookies = this.totalCookies + this.simulatedCookiesArray[j];
+                                                    this.totalCookies += this.simulatedCookiesArray[j];
                                                   }
+                                                  return this.totalCookies;
                                                };
 
 
 SalesPerLocation.prototype.saleTableRow1 =  function() {
                                               var table =  document.createElement('table');
-
+                                              table.setAttribute("id", "store-table");
                                               var tRow1, tData1, tDataEmpty, tDataDailyTotalString ;
 
                                               tRow1 = document.createElement('tr');
@@ -56,34 +57,149 @@ SalesPerLocation.prototype.saleTableRow1 =  function() {
                                             }
 
 SalesPerLocation.prototype.saleTableRow2 = function () {
-                                             var tRow2, tLocations, tData2, tDataDailyTotal;
+                                             var table, tRow2, tLocations, tData2, tDataDailyTotal;
 
+                                             table = document.getElementById('store-table');
                                              tRow2 = document.createElement('tr');
                                              table.appendChild(tRow2);
 
                                              tLocations = document.createElement('td');
-                                             tLocations.textContent = location;
+                                             tLocations.textContent = this.location;
                                              tRow2.appendChild(tLocations);
+                                             this.simulatedCookiesPerHour();
 
-                                             for (var i=0; i<this.businessHours.lenghth; i++) {
+                                             for (var i=0; i<this.businessHours.length; i++) {
                                                tData2 = document.createElement('td');
                                                tData2.textContent = this.simulatedCookiesArray[i];
                                                tRow2.appendChild(tData2);
                                              }
 
-                                             tDataDailyTotal = document.craeteElement('td');
-                                             tRow2.appendChild(tDataDailyTotal);
+                                             tDataDailyTotal = document.createElement('td');
                                              tDataDailyTotal.textContent = this.totalCookiesFunc();
                                              tRow2.appendChild(tDataDailyTotal);
                                            }
 
 
+
+SalesPerLocation.prototype.saleTableRow3 = function () {
+                                              var table, tRow3, tLocations, tData3, tDataDailyTotal;
+
+                                              table = document.getElementById('store-table');
+                                              tRow3 = document.createElement('tr');
+                                              table.appendChild(tRow3);
+
+                                              tLocations = document.createElement('td');
+                                              tLocations.textContent = this.location;
+                                              tRow3.appendChild(tLocations);
+                                              this.simulatedCookiesPerHour();
+
+                                              for (var i=0; i<this.businessHours.length; i++) {
+                                                  tData3 = document.createElement('td');
+                                                  tData3.textContent = this.simulatedCookiesArray[i];
+                                                  tRow3.appendChild(tData3);
+                                              }
+
+                                              tDataDailyTotal = document.createElement('td');
+                                              tDataDailyTotal.textContent = this.totalCookiesFunc();
+                                              tRow3.appendChild(tDataDailyTotal);
+                                         }
+
+
+
+SalesPerLocation.prototype.saleTableRow4 = function () {
+                                              var table, tRow4, tLocations, tData4, tDataDailyTotal;
+
+                                              table = document.getElementById('store-table');
+                                              tRow4 = document.createElement('tr');
+                                              table.appendChild(tRow4);
+
+                                              tLocations = document.createElement('td');
+                                              tLocations.textContent = this.location;
+                                              tRow4.appendChild(tLocations);
+                                              this.simulatedCookiesPerHour();
+
+                                              for (var i=0; i<this.businessHours.length; i++) {
+                                                  tData4 = document.createElement('td');
+                                                  tData4.textContent = this.simulatedCookiesArray[i];
+                                                  tRow4.appendChild(tData4);
+                                              }
+
+                                              tDataDailyTotal = document.createElement('td');
+                                              tDataDailyTotal.textContent = this.totalCookiesFunc();
+                                              tRow4.appendChild(tDataDailyTotal);
+                                          }
+
+
+
+SalesPerLocation.prototype.saleTableRow5 = function () {
+                                              var table, tRow5, tLocations, tData5, tDataDailyTotal;
+
+                                              table = document.getElementById('store-table');
+                                              tRow5 = document.createElement('tr');
+                                              table.appendChild(tRow5);
+
+                                              tLocations = document.createElement('td');
+                                              tLocations.textContent = this.location;
+                                              tRow5.appendChild(tLocations);
+                                              this.simulatedCookiesPerHour();
+
+                                              for (var i=0; i<this.businessHours.length; i++) {
+                                                  tData5 = document.createElement('td');
+                                                  tData5.textContent = this.simulatedCookiesArray[i];
+                                                  tRow5.appendChild(tData5);
+                                              }
+
+                                              tDataDailyTotal = document.createElement('td');
+                                              tDataDailyTotal.textContent = this.totalCookiesFunc();
+                                              tRow5.appendChild(tDataDailyTotal);
+                                          }
+
+
+SalesPerLocation.prototype.saleTableRow6 = function () {
+                                              var table, tRow6, tLocations, tData6, tDataDailyTotal;
+
+                                              table = document.getElementById('store-table');
+                                              tRow6 = document.createElement('tr');
+                                              table.appendChild(tRow6);
+
+                                              tLocations = document.createElement('td');
+                                              tLocations.textContent = this.location;
+                                              tRow6.appendChild(tLocations);
+                                              this.simulatedCookiesPerHour();
+
+                                              for (var i=0; i<this.businessHours.length; i++) {
+                                                  tData6 = document.createElement('td');
+                                                  tData6.textContent = this.simulatedCookiesArray[i];
+                                                  tRow6.appendChild(tData6);
+                                              }
+
+                                              tDataDailyTotal = document.createElement('td');
+                                              tDataDailyTotal.textContent = this.totalCookiesFunc();
+                                              tRow6.appendChild(tDataDailyTotal);
+                                          }
+
+
+
 var pike = new SalesPerLocation (23, 65, 6.3, "1st & Pike");
+var seaTac = new SalesPerLocation (3, 24, 1.2, "SeaTac Airport");
+var seattleCenter = new SalesPerLocation (11, 38, 3.7, "Seattle Center");
+var capitolHill = new SalesPerLocation (20, 38, 2.3, "Capitol Hill");
+var alki = new SalesPerLocation (2, 16, 4.6, "Alki");
+
 var pikeHTMLPosition = document.getElementById('dailysales-table');
-var pikeTRow1 = pike.saleTableRow1();
-pikeHTMLPosition.appendChild(pikeTRow1);
-var pikeTRow2 = pike.saleTableRow2();
-pikeHTMLPosition.appendChild(pikeTRow2);
+var tHeading = pike.saleTableRow1();
+
+pikeHTMLPosition.appendChild(tHeading);
+
+
+pike.saleTableRow2();
+seaTac.saleTableRow3();
+seattleCenter.saleTableRow4();
+capitolHill.saleTableRow5();
+alki.saleTableRow6();
+
+
+
 
 
 //
