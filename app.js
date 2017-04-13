@@ -87,6 +87,7 @@ var seattleCenter = new SalesPerLocation (11, 38, 3.7, "Seattle Center");
 var capitolHill = new SalesPerLocation (20, 38, 2.3, "Capitol Hill");
 var alki = new SalesPerLocation (2, 16, 4.6, "Alki");
 
+
 var pikeHTMLPosition = document.getElementById('dailysales-table');
 var table = pike.saleTableHeading();
 
@@ -97,3 +98,31 @@ seaTac.saleDataTableRows();
 seattleCenter.saleDataTableRows();
 capitolHill.saleDataTableRows();
 alki.saleDataTableRows();
+
+
+
+
+
+
+////////////////////Event Listener///////////////////////
+
+
+
+var userAddLocation = document.getElementById('user-add-location');
+
+function userInputLocation(event) {
+  event.preventDefault();
+  var form = event.target;
+  var inputMinCustomers = form.inputMinCustomers.value;
+  var inputMaxCustomers = form.inputMaxCustomers.value;
+  var inputAvgCookies = form.inputAvgCookies.value;
+  var inputLocation = form.inputLocation.value;
+
+  form.reset();
+
+  var addLocation = new SalesPerLocation (inputMaxCustomers, inputMinCustomers, inputAvgCookies, inputLocation);
+  addLocation.saleDataTableRows();
+}
+
+
+userAddLocation.addEventListener('submit',userInputLocation)
